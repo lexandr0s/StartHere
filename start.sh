@@ -8,10 +8,13 @@ case "$1" in
   clone)
     echo -n "clone git"
     for f in  $REPLIST ; do
-      # usr
-      #git clone https://github.com/Duckbox-Developers/$f $f
-      # dev
-      git clone git@github.com:Duckbox-Developers/$f $f
+      if [ $2 = "dev" ]; then
+        # dev
+        git clone git@github.com:Duckbox-Developers/$f $f
+      else
+        # usr
+        git clone https://github.com/Duckbox-Developers/$f $f
+      fi
       echo "git clone" $f
     done
     sudo $DIR/prepare4cdk.sh
