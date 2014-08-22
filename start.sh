@@ -2,6 +2,7 @@
 
 DIR=`pwd`
 GITPULL="git pull"
+GITPUSH="git push origin master"
 GITSTATUS="git status"
 REPLIST="apps cdk driver flash"
 
@@ -31,6 +32,14 @@ case "$1" in
 			cd ..
 			done
 			;;
+	push)
+		for f in  $REPLIST ; do
+			cd $DIR/$f
+			echo "$GITPUSH" $f
+			$GITPUSH
+			cd ..
+			done
+			;;
 	status)
 		for f in  $REPLIST ; do
 			cd $DIR/$f
@@ -41,7 +50,7 @@ case "$1" in
 			;;
 	*)
 		if [ -d cdk ]; then
-			echo "Usage: {clone | pull | status}"
+			echo "Usage: {clone | pull | push | status}"
 			exit 1
 		else
 			$0 clone
