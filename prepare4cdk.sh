@@ -75,6 +75,7 @@ PACKAGES="\
 	flex \
 	bison \
 	texinfo \
+	libffi \
 	intltool \
 	libtool \
 	swig \
