@@ -8,21 +8,54 @@ REPLIST="apps cdk driver flash"
 
 case "$1" in
 	clone)
-		for f in  $REPLIST ; do
-			if [ -d "$f" ]; then
-				echo "$f already cloned"
-			else
-				if [ "$2" = "dev" ]; then
-					# dev
-					git clone git@github.com:Duckbox-Developers/$f $f
+		if [ -d "apps" ]; then
+			echo "apps already cloned"
+		else
+			if [ "$2" = "dev" ]; then
+				# dev
+				git clone git@github.com:lexandr0s/apps apps
 				else
-					# usr
-					git clone git://github.com/Duckbox-Developers/$f $f
-				fi
-				echo "git clone" $f
+				# usr
+				git clone https://github.com/lexandr0s/apps apps
 			fi
-		done
-		#sudo $DIR/prepare4cdk.sh
+			echo "git clone" apps
+		fi
+		if [ -d "cdk" ]; then
+                	echo "cdk already cloned"
+                else
+                        echo "git clone cdk"
+	                if [ "$2" = "dev" ]; then
+                                # dev
+                                git clone git@github.com:lexandr0s/ddt-cdk cdk
+                                else
+                                # usr
+                                git clone https://github.com/lexandr0s/ddt-cdk cdk
+                        fi
+                fi
+                if [ -d "driver" ]; then
+                        echo "driver already cloned"
+                else
+                        echo "git clone driver"
+                        if [ "$2" = "dev" ]; then
+                                # dev
+                                git clone git@github.com:lexandr0s/ddt-driver driver
+                                else
+                                # usr
+                                git clone https://github.com/lexandr0s/ddt-driver driver
+                        fi
+                fi
+                if [ -d "flash" ]; then
+                        echo "flash already cloned"
+                else
+                        echo "git clone flash"
+                        if [ "$2" = "dev" ]; then
+                                # dev
+                                git clone git@github.com:lexandr0s/flash flash
+                                else
+                                # usr
+                                git clone https://github.com/lexandr0s/flash flash
+                        fi
+                fi
 		;;
 	pull)
 		for f in  $REPLIST ; do
